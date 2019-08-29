@@ -180,11 +180,11 @@ class TasksManager extends Component {
                                                         </ListItemSecondaryAction>
                                                 </ListItem>
                                                 <List className={classes.childList}>
-                                                {task.children.map( child => (
-                                                    <ListItem key={child.id} button component={Link} to={`/tasks/edit/${child.id}`}>
+                                                {task.cards.map( card => (
+                                                    <ListItem key={card.id} button component={Link} to={`/tasks/edit/${card.id}`}>
                                                         <ListItemText
-                                                            primary={child.title}
-                                                            secondary={child.description}/>
+                                                            primary={card.title}
+                                                            secondary={card.description}/>
 
                                                     </ListItem>
                                                 ))}
