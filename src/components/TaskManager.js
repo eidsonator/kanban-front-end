@@ -23,7 +23,7 @@ import {
     Grid
 } from '@material-ui/core';
 import { Delete as DeleteIcon, Add as AddIcon } from '@material-ui/icons';
-import { find, orderBy } from 'lodash';
+import { find, orderBy, flatten, map } from 'lodash';
 import { compose } from 'recompose';
 
 import TaskEditor from '../components/TaskEditor';
@@ -115,13 +115,13 @@ class TasksManager extends Component {
     };
 
     renderDeleteModal = ({ match: { params: { id } } }) => {
-        const task = find(this.state.tasks, { id: Number(id) });
+        const task = this.findTask(id);
         return <DeleteModal task={task}  onDelete={this.deleteTask}/>
     };
 
     renderTaskEditor = ({ match: { params: { id } } }) => {
         if (this.state.loading) return null;
-        let task = find(this.state.tasks, { id: Number(id) });
+        let task = this.findTask(id);
 
         if (!task && id !== 'new') return <Redirect to="/tasks" />;
         const parent = this.getParent();
@@ -131,6 +131,14 @@ class TasksManager extends Component {
         return <TaskEditor task={task} onSave={this.saveTask} parent={parent}/>;
     };
 
+    findTask = (id) => {
+        let task = find(this.state.tasks, { id: Number(id) });
+        if (!task) {
+            task = find(flatten(map(this.state.tasks, "children")), { id: Number(id) })
+        }
+        return task;
+    };
+
 
     getParent = () => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -138,9 +146,9 @@ class TasksManager extends Component {
             return urlParams.get("parent");
         }
         return null;
-    }
+    };
 
-        render() {
+    render() {
         const { classes } = this.props;
 
         return (
