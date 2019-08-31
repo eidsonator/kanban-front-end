@@ -49,7 +49,7 @@ const AppHeader = ({
     component = {
         Link
     }
-    to = "/tasks" > Tasks < /Button> <
+    to = "/lists" > Lists < /Button> <
     /div>
 
     <

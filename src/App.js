@@ -11,7 +11,7 @@ import {
 
 import AppHeader from './components/AppHeader';
 import Home from './pages/Home';
-import TaskManager from "./components/TaskManager";
+import ListManager from "./components/ListManager";
 
 const styles = theme => ({
     main: {
@@ -40,9 +40,9 @@ const App = ({
         Home
     }
     /> <
-    Route path = "/tasks"
+    Route path = "/lists"
     component = {
-        TaskManager
+        ListManager
     }
     /> < /
     main > <

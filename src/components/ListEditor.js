@@ -4,6 +4,7 @@ import {
     Card,
     CardContent,
     CardActions,
+    Chip,
     Modal,
     Button,
     TextField,
@@ -33,8 +34,8 @@ const styles = theme => ({
 
 
 
-const TaskEditor = ({ task, onSave, parent, history, classes }) => (
-    <Form initialValues={task} onSubmit={onSave}>
+const ListEditor = ({ list, onSave, parent, history, classes }) => (
+    <Form initialValues={list} onSubmit={onSave}>
         {({ handleSubmit }) => (
             <Modal
                 className={classes.modal}
@@ -56,6 +57,7 @@ const TaskEditor = ({ task, onSave, parent, history, classes }) => (
                                     />
                                 )}
                             </Field>
+
                         </CardContent>
                         <CardActions>
                             <Button size="small" color="primary" type="submit">Save</Button>
@@ -71,4 +73,4 @@ const TaskEditor = ({ task, onSave, parent, history, classes }) => (
 export default compose(
     withRouter,
     withStyles(styles),
-)(TaskEditor);
+)(ListEditor);

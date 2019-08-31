@@ -39,13 +39,13 @@ const styles = theme => ({
 });
 
 const DeleteModal = ({
-    task,
+    list,
     onDelete,
     history,
     classes
 }) => ( <
     Form initialValues = {
-        task
+        list
     }
     onSubmit = {
         onDelete
